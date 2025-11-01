@@ -26,8 +26,8 @@ export function Hero() {
           </div>
           
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Premium decorative paints and finishes for residential and commercial projects. 
-            Transform your spaces with quality products from Tunisia.
+            Peintures et finitions décoratives premium pour projets résidentiels et commerciaux. 
+            Transformez vos espaces avec des produits de qualité depuis la Tunisie.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -36,7 +36,7 @@ export function Hero() {
               onClick={scrollToProducts}
               className="bg-[var(--gradient-brand)] hover:opacity-90 text-white font-semibold group"
             >
-              Explore Products
+              Découvrir nos Produits
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
@@ -44,7 +44,7 @@ export function Hero() {
               variant="outline"
               onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
             >
-              Contact Us
+              Nous Contacter
             </Button>
           </div>
         </div>

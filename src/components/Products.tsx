@@ -4,23 +4,23 @@ import { Paintbrush, Palette, Sparkles, Shield } from "lucide-react";
 const products = [
   {
     icon: Paintbrush,
-    title: "Interior Paints",
-    description: "High-quality interior paints for walls and ceilings with excellent coverage and durability.",
+    title: "Peintures Intérieures",
+    description: "Peintures intérieures de haute qualité pour murs et plafonds avec excellente couverture et durabilité.",
   },
   {
     icon: Palette,
-    title: "Exterior Coatings",
-    description: "Weather-resistant exterior paints designed to withstand harsh conditions.",
+    title: "Revêtements Extérieurs",
+    description: "Peintures extérieures résistantes aux intempéries conçues pour les conditions difficiles.",
   },
   {
     icon: Sparkles,
-    title: "Decorative Finishes",
-    description: "Premium decorative finishes including metallic, textured, and special effects.",
+    title: "Finitions Décoratives",
+    description: "Finitions décoratives premium incluant métalliques, texturées et effets spéciaux.",
   },
   {
     icon: Shield,
-    title: "Protective Solutions",
-    description: "Industrial-grade protective coatings for maximum durability and protection.",
+    title: "Solutions Protectrices",
+    description: "Revêtements protecteurs de qualité industrielle pour une durabilité et protection maximales.",
   },
 ];
 
@@ -29,10 +29,10 @@ export function Products() {
     <section id="products" className="py-24 bg-secondary/30">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl md:text-5xl font-black">Our Products</h2>
+          <h2 className="text-4xl md:text-5xl font-black">Nos Produits</h2>
           <div className="h-1 w-24 bg-[var(--gradient-brand)] rounded-full mx-auto" />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Discover our comprehensive range of premium decorative products
+            Découvrez notre gamme complète de produits décoratifs premium
           </p>
         </div>
 
