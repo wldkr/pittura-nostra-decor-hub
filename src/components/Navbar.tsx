@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { Link } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -61,10 +62,16 @@ export function Navbar() {
     },
   ];
 
+  const catalogueLinks = [
+    { name: "Catalogue Général 2022", href: "/catalogues#catalogue-general-2022" },
+    { name: "Peintures Intérieures", href: "/catalogues#peintures-interieures" },
+    { name: "Revêtements Extérieurs", href: "/catalogues#revetements-exterieurs" },
+    { name: "Finitions Décoratives", href: "/catalogues#finitions-decoratives" },
+  ];
+
   const navLinks = [
     { name: "Accueil", href: "#home" },
     { name: "À Propos", href: "#about" },
-    { name: "Catalogues", href: "#catalogues" },
     { name: "Galerie", href: "#gallery" },
     { name: "Contact", href: "#contact" },
   ];
@@ -106,6 +113,28 @@ export function Navbar() {
             
             <NavigationMenu>
               <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="bg-transparent">
+                    Catalogues
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="w-[300px] gap-2 p-4">
+                      {catalogueLinks.map((catalogue) => (
+                        <li key={catalogue.name}>
+                          <NavigationMenuLink asChild>
+                            <Link
+                              to={catalogue.href}
+                              className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            >
+                              <div className="text-sm font-medium">{catalogue.name}</div>
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="bg-transparent">
                     Produits
@@ -167,6 +196,20 @@ export function Navbar() {
               </button>
             ))}
             
+            <div className="border-t pt-4 mt-4">
+              <p className="font-bold text-sm mb-2">Catalogues</p>
+              {catalogueLinks.map((catalogue) => (
+                <Link
+                  key={catalogue.name}
+                  to={catalogue.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block w-full text-left text-sm text-foreground hover:text-primary transition-colors py-2"
+                >
+                  {catalogue.name}
+                </Link>
+              ))}
+            </div>
+
             <div className="border-t pt-4 mt-4">
               <p className="font-bold text-sm mb-2">Produits</p>
               {productCategories.map((category) => (

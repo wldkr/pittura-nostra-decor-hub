@@ -28,6 +28,22 @@ export function About() {
             <div className="h-1 w-24 bg-[var(--gradient-brand)] rounded-full mx-auto" />
           </div>
 
+          {/* Video Section */}
+          <div className="mb-16">
+            <div className="aspect-video w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-lg">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube-nocookie.com/embed/ONlwxw-gBd8?si=7Ml8Jl6p4tLQkei6&autoplay=1&mute=1&controls=0&loop=1&playlist=ONlwxw-gBd8" 
+                title="PITTURA NOSTRA"
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div className="space-y-6">
               <p className="text-lg leading-relaxed">
