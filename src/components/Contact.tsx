@@ -109,7 +109,7 @@ export function Contact() {
                   <img 
                     src={qrCode}
                     alt="QR Code PITTURA NOSTRA"
-                    className="w-40 h-40 rounded-lg"
+                    className="w-28 h-28 rounded-lg"
                   />
                 </div>
               </div>
