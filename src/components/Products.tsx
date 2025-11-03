@@ -1,26 +1,47 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Paintbrush, Palette, Sparkles, Shield } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Paintbrush, Palette, Sparkles, Shield, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const products = [
+const productCategories = [
   {
     icon: Paintbrush,
     title: "Peintures Intérieures",
     description: "Peintures intérieures de haute qualité pour murs et plafonds avec excellente couverture et durabilité.",
+    products: [
+      { id: "antico", name: "Antico" },
+      { id: "serene", name: "Serene" },
+      { id: "sabbia", name: "Sabbia" },
+    ]
   },
   {
     icon: Palette,
     title: "Revêtements Extérieurs",
     description: "Peintures extérieures résistantes aux intempéries conçues pour les conditions difficiles.",
+    products: [
+      { id: "eco-eco", name: "Eco & Eco" },
+      { id: "surfacaire-extra", name: "Surfacaire Extra" },
+    ]
   },
   {
     icon: Sparkles,
     title: "Finitions Décoratives",
     description: "Finitions décoratives premium incluant métalliques, texturées et effets spéciaux.",
+    products: [
+      { id: "gravitti", name: "Gravitti" },
+      { id: "gresetanche", name: "Gresetanche" },
+    ]
   },
   {
     icon: Shield,
     title: "Solutions Protectrices",
     description: "Revêtements protecteurs de qualité industrielle pour une durabilité et protection maximales.",
+    products: [
+      { id: "sellando", name: "Sellando" },
+      { id: "primer", name: "Primer" },
+      { id: "mastic-1", name: "Mastic 1" },
+      { id: "mastic-2", name: "Mastic 2" },
+    ]
   },
 ];
 
@@ -37,17 +58,33 @@ export function Products() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((product, index) => (
+          {productCategories.map((category, index) => (
             <Card
               key={index}
               className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg group"
             >
               <CardContent className="p-6 space-y-4">
                 <div className="w-14 h-14 bg-[var(--gradient-brand)] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <product.icon className="h-7 w-7 text-white" />
+                  <category.icon className="h-7 w-7 text-white" />
                 </div>
-                <h3 className="text-xl font-bold">{product.title}</h3>
-                <p className="text-muted-foreground">{product.description}</p>
+                <h3 className="text-xl font-bold">{category.title}</h3>
+                <p className="text-muted-foreground text-sm">{category.description}</p>
+                
+                <div className="pt-4 space-y-2">
+                  {category.products.map((product) => (
+                    <Button
+                      key={product.id}
+                      variant="ghost"
+                      className="w-full justify-between"
+                      asChild
+                    >
+                      <Link to={`/produit/${product.id}`}>
+                        {product.name}
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                  ))}
+                </div>
               </CardContent>
             </Card>
           ))}

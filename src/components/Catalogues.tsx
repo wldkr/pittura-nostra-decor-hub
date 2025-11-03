@@ -41,6 +41,34 @@ export function Catalogues() {
           </p>
         </div>
 
+        {/* Catalogue 2022 Iframe */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="bg-card border rounded-lg p-6">
+            <h3 className="text-2xl font-bold mb-6 text-center">Catalogue 2022</h3>
+            <div className="relative overflow-hidden" style={{ height: "552px", maxWidth: "100%" }}>
+              <iframe 
+                style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+                src="https://www.yumpu.com/fr/embed/view/dXVSyuFcevgC4qfE" 
+                frameBorder="0" 
+                allowFullScreen={true}
+                title="Catalogue PITTURA NOSTRA 2022"
+              />
+            </div>
+            <div className="text-center mt-4">
+              <Button asChild variant="outline">
+                <a 
+                  href="https://www.yumpu.com/fr/document/view/66605654/catalogue-2022" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Ouvrir en plein écran
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {catalogues.map((catalogue, index) => (
             <Card key={index} className="hover:shadow-lg transition-shadow">

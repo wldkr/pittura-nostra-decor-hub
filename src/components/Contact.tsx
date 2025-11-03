@@ -41,6 +41,18 @@ export function Contact() {
                   </a>
                 </div>
               </div>
+
+              {/* QR Code */}
+              <div className="pt-4 border-t">
+                <h3 className="text-xl font-bold mb-4 text-center">QR Code</h3>
+                <div className="flex justify-center">
+                  <img 
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent('PITTURA NOSTRA\nMenzal Harb, Monastir, Tunisie\nTél: +216 73 460 460\nwww.pitturanostra.com')}`}
+                    alt="QR Code PITTURA NOSTRA"
+                    className="w-48 h-48 border-4 border-primary/20 rounded-lg"
+                  />
+                </div>
+              </div>
             </CardContent>
           </Card>
 
