@@ -18,10 +18,30 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      setIsScrolled(currentScrollY > 20);
+      
+      // Hide navbar when scrolling down, show when scrolling up
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      setMouseY(e.clientY);
+      // Show navbar when mouse is near top of page (within 100px)
+      if (e.clientY < 100) {
+        setIsVisible(true);
+      }
     };
 
     const updateTheme = () => {
@@ -29,6 +49,7 @@ export function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("mousemove", handleMouseMove);
     updateTheme();
     
     const observer = new MutationObserver(updateTheme);
@@ -39,9 +60,10 @@ export function Navbar() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("mousemove", handleMouseMove);
       observer.disconnect();
     };
-  }, []);
+  }, [lastScrollY]);
 
   const productCategories = [
     {
@@ -73,6 +95,7 @@ export function Navbar() {
     { name: "Accueil", href: "#home" },
     { name: "À Propos", href: "#about" },
     { name: "Galerie", href: "#gallery" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -86,8 +109,10 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"
+      } ${
+        isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -102,13 +127,23 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => scrollToSection(link.href)}
-                className="text-foreground hover:text-primary transition-colors font-medium"
-              >
-                {link.name}
-              </button>
+              link.href.startsWith("#") ? (
+                <button
+                  key={link.name}
+                  onClick={() => scrollToSection(link.href)}
+                  className="text-foreground hover:text-primary transition-colors font-medium"
+                >
+                  {link.name}
+                </button>
+              ) : (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className="text-foreground hover:text-primary transition-colors font-medium"
+                >
+                  {link.name}
+                </Link>
+              )
             ))}
             
             <NavigationMenu>
@@ -187,13 +222,24 @@ export function Navbar() {
         <div className="md:hidden bg-background border-t">
           <div className="container mx-auto px-4 py-4 space-y-4">
             {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => scrollToSection(link.href)}
-                className="block w-full text-left text-foreground hover:text-primary transition-colors font-medium py-2"
-              >
-                {link.name}
-              </button>
+              link.href.startsWith("#") ? (
+                <button
+                  key={link.name}
+                  onClick={() => scrollToSection(link.href)}
+                  className="block w-full text-left text-foreground hover:text-primary transition-colors font-medium py-2"
+                >
+                  {link.name}
+                </button>
+              ) : (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block w-full text-left text-foreground hover:text-primary transition-colors font-medium py-2"
+                >
+                  {link.name}
+                </Link>
+              )
             ))}
             
             <div className="border-t pt-4 mt-4">
