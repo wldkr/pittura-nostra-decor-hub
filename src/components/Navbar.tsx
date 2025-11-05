@@ -1,16 +1,8 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { Link } from "react-router-dom";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+import { Link, useNavigate } from "react-router-dom";
 import logoWhite from "@/assets/logo-white.png";
 import logoBlack from "@/assets/logo-black.png";
 
@@ -20,7 +12,7 @@ export function Navbar() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [mouseY, setMouseY] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +29,6 @@ export function Navbar() {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      setMouseY(e.clientY);
       // Show navbar when mouse is near top of page (within 100px)
       if (e.clientY < 100) {
         setIsVisible(true);
@@ -65,45 +56,37 @@ export function Navbar() {
     };
   }, [lastScrollY]);
 
-  const productCategories = [
-    {
-      name: "Peintures Intérieures",
-      items: ["Antico", "Serene", "Sabbia"],
-    },
-    {
-      name: "Revêtements Extérieurs",
-      items: ["Eco&Eco", "Surfacaire Extra"],
-    },
-    {
-      name: "Finitions Décoratives",
-      items: ["Gravitti", "Gresetanche"],
-    },
-    {
-      name: "Solutions Protectrices",
-      items: ["Sellando", "Primer", "Mastic 1", "Mastic 2"],
-    },
-  ];
-
-  const catalogueLinks = [
-    { name: "Catalogue Général 2022", href: "/catalogues#catalogue-general-2022" },
-    { name: "Peintures Intérieures", href: "/catalogues#peintures-interieures" },
-    { name: "Revêtements Extérieurs", href: "/catalogues#revetements-exterieurs" },
-    { name: "Finitions Décoratives", href: "/catalogues#finitions-decoratives" },
-  ];
-
   const navLinks = [
-    { name: "Accueil", href: "#home" },
-    { name: "À Propos", href: "#about" },
-    { name: "Galerie", href: "#gallery" },
+    { name: "Accueil", href: "/" },
+    { name: "Produits", href: "/#products" },
+    { name: "Catalogue", href: "/catalogues" },
     { name: "Blog", href: "/blog" },
-    { name: "Contact", href: "#contact" },
+    { name: "Artisans", href: "/artisans" },
+    { name: "Contact", href: "/#contact" },
+    { name: "À Propos", href: "/#about" },
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
+  const handleNavigation = (href: string) => {
+    setIsMobileMenuOpen(false);
+    
+    if (href.startsWith("/#")) {
+      const hash = href.substring(2);
+      if (window.location.pathname !== "/") {
+        navigate("/");
+        setTimeout(() => {
+          const element = document.querySelector(`#${hash}`);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      } else {
+        const element = document.querySelector(`#${hash}`);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    } else {
+      navigate(href);
     }
   };
 
@@ -116,95 +99,41 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <div className="flex items-center">
+        {/* Logo centered at top */}
+        <div className="flex justify-center py-4 border-b border-border/50">
+          <Link to="/" className="flex items-center">
             <img
               src={theme === "dark" ? logoWhite : logoBlack}
               alt="PITTURA NOSTRA"
-              className="h-12 w-auto"
+              className="h-16 w-auto"
             />
-          </div>
+          </Link>
+        </div>
 
-          <div className="hidden md:flex items-center space-x-6">
-            {navLinks.map((link) => (
-              link.href.startsWith("#") ? (
+        {/* Menu and Theme Toggle */}
+        <div className="flex items-center justify-between h-16">
+          {/* Desktop Menu - Centered */}
+          <div className="hidden md:flex items-center justify-center flex-1">
+            <div className="flex items-center space-x-8">
+              {navLinks.map((link) => (
                 <button
                   key={link.name}
-                  onClick={() => scrollToSection(link.href)}
+                  onClick={() => handleNavigation(link.href)}
                   className="text-foreground hover:text-primary transition-colors font-medium"
                 >
                   {link.name}
                 </button>
-              ) : (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className="text-foreground hover:text-primary transition-colors font-medium"
-                >
-                  {link.name}
-                </Link>
-              )
-            ))}
-            
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="bg-transparent">
-                    Catalogues
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="w-[300px] gap-2 p-4">
-                      {catalogueLinks.map((catalogue) => (
-                        <li key={catalogue.name}>
-                          <NavigationMenuLink asChild>
-                            <Link
-                              to={catalogue.href}
-                              className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                            >
-                              <div className="text-sm font-medium">{catalogue.name}</div>
-                            </Link>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+              ))}
+            </div>
+          </div>
 
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="bg-transparent">
-                    Produits
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="grid w-[600px] gap-3 p-6 md:grid-cols-2">
-                      {productCategories.map((category) => (
-                        <div key={category.name} className="space-y-2">
-                          <h4 className="font-bold text-sm">{category.name}</h4>
-                          <ul className="space-y-1">
-                            {category.items.map((item) => (
-                              <li key={item}>
-                                <NavigationMenuLink asChild>
-                                  <button
-                                    onClick={() => scrollToSection("#products")}
-                                    className="block select-none rounded-md p-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-sm w-full text-left"
-                                  >
-                                    {item}
-                                  </button>
-                                </NavigationMenuLink>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-            
+          {/* Theme Toggle - Right */}
+          <div className="hidden md:block absolute right-4">
             <ThemeToggle />
           </div>
 
-          <div className="md:hidden flex items-center space-x-2">
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center justify-between w-full">
             <ThemeToggle />
             <Button
               variant="ghost"
@@ -218,63 +147,19 @@ export function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-background border-t">
           <div className="container mx-auto px-4 py-4 space-y-4">
             {navLinks.map((link) => (
-              link.href.startsWith("#") ? (
-                <button
-                  key={link.name}
-                  onClick={() => scrollToSection(link.href)}
-                  className="block w-full text-left text-foreground hover:text-primary transition-colors font-medium py-2"
-                >
-                  {link.name}
-                </button>
-              ) : (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-left text-foreground hover:text-primary transition-colors font-medium py-2"
-                >
-                  {link.name}
-                </Link>
-              )
+              <button
+                key={link.name}
+                onClick={() => handleNavigation(link.href)}
+                className="block w-full text-left text-foreground hover:text-primary transition-colors font-medium py-2"
+              >
+                {link.name}
+              </button>
             ))}
-            
-            <div className="border-t pt-4 mt-4">
-              <p className="font-bold text-sm mb-2">Catalogues</p>
-              {catalogueLinks.map((catalogue) => (
-                <Link
-                  key={catalogue.name}
-                  to={catalogue.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-left text-sm text-foreground hover:text-primary transition-colors py-2"
-                >
-                  {catalogue.name}
-                </Link>
-              ))}
-            </div>
-
-            <div className="border-t pt-4 mt-4">
-              <p className="font-bold text-sm mb-2">Produits</p>
-              {productCategories.map((category) => (
-                <div key={category.name} className="mb-3">
-                  <p className="text-xs font-semibold text-muted-foreground mb-1">{category.name}</p>
-                  <div className="pl-2 space-y-1">
-                    {category.items.map((item) => (
-                      <button
-                        key={item}
-                        onClick={() => scrollToSection("#products")}
-                        className="block w-full text-left text-sm text-foreground hover:text-primary transition-colors py-1"
-                      >
-                        {item}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       )}
