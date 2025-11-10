@@ -1,65 +1,53 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { Paintbrush, Palette, Sparkles, Shield, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Home, Building2, Sparkles, Shield } from "lucide-react";
 import { useState } from "react";
+import { getProductsByCategory } from "@/data/productsData";
 
 const productCategories = [
   {
-    icon: Paintbrush,
+    icon: Home,
     title: "Peintures Intérieures",
     description: "Peintures intérieures de haute qualité pour murs et plafonds avec excellente couverture et durabilité.",
     color: "from-blue-500 to-indigo-600",
-    products: [
-      { id: "adore", name: "Adore" },
-      { id: "antico", name: "Antico" },
-      { id: "festive", name: "Festive" },
-      { id: "fresco", name: "Fresco" },
-      { id: "marmo", name: "Marmo" },
-      { id: "metal", name: "Metal" },
-      { id: "nirvana", name: "Nirvana" },
-      { id: "nostalgia", name: "Nostalgia" },
-      { id: "sabbia", name: "Sabbia" },
-      { id: "serene", name: "Serene" },
-      { id: "strong", name: "Strong" },
-    ]
+    category: "interior" as const,
+    sectionId: "peintures-interieures"
   },
   {
-    icon: Palette,
+    icon: Building2,
     title: "Revêtements Extérieurs",
     description: "Peintures extérieures résistantes aux intempéries conçues pour les conditions difficiles.",
     color: "from-green-500 to-emerald-600",
-    products: [
-      { id: "surfacaire-eco-eco", name: "Surfacaire Eco&Eco" },
-      { id: "surfacaire-extra", name: "Surfacaire Extra" },
-    ]
+    category: "exterior" as const,
+    sectionId: "revetements-exterieurs"
   },
   {
     icon: Sparkles,
     title: "Finitions Décoratives",
     description: "Finitions décoratives premium incluant métalliques, texturées et effets spéciaux.",
     color: "from-purple-500 to-pink-600",
-    products: [
-      { id: "gravitti", name: "Gravitti" },
-      { id: "gresetanche", name: "Gresetanche" },
-    ]
+    category: "decorative" as const,
+    sectionId: "finitions-decoratives"
   },
   {
     icon: Shield,
     title: "Solutions Protectrices",
     description: "Revêtements protecteurs de qualité industrielle pour une durabilité et protection maximales.",
     color: "from-amber-500 to-orange-600",
-    products: [
-      { id: "mastic-1", name: "Mastic 1" },
-      { id: "mastic-2", name: "Mastic 2" },
-      { id: "primer", name: "Primer" },
-      { id: "sellando", name: "Sellando" },
-    ]
+    category: "protective" as const,
+    sectionId: "solutions-protectrices"
   },
 ];
 
 export function Products() {
-  const [showAllInterior, setShowAllInterior] = useState(false);
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
+
+  const toggleCategory = (sectionId: string) => {
+    setExpandedCategories(prev => ({
+      ...prev,
+      [sectionId]: !prev[sectionId]
+    }));
+  };
 
   return (
     <section id="products" className="py-24 bg-secondary/30">
@@ -72,53 +60,89 @@ export function Products() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {productCategories.map((category, index) => {
-            const isInterior = category.title === "Peintures Intérieures";
-            const displayProducts = isInterior && !showAllInterior 
-              ? category.products.slice(0, 3) 
-              : category.products;
+        {/* Icônes des familles - Navigation rapide */}
+        <div className="flex justify-center gap-8 mb-16 flex-wrap">
+          {productCategories.map((category) => (
+            <a
+              key={category.sectionId}
+              href={`#${category.sectionId}`}
+              className="group flex flex-col items-center gap-3 transition-transform hover:scale-110"
+            >
+              <div className={`w-20 h-20 bg-gradient-to-br ${category.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all`}>
+                <category.icon className="h-10 w-10 text-white" />
+              </div>
+              <span className="text-sm font-semibold text-center max-w-[100px] group-hover:text-primary transition-colors">
+                {category.title}
+              </span>
+            </a>
+          ))}
+        </div>
+
+        {/* Sections de produits par famille */}
+        <div className="space-y-16 max-w-7xl mx-auto">
+          {productCategories.map((category) => {
+            const products = getProductsByCategory(category.category);
+            const isExpanded = expandedCategories[category.sectionId];
+            const displayProducts = isExpanded ? products : products.slice(0, 3);
+            const hasMore = products.length > 3;
 
             return (
-              <Card
-                key={index}
-                className="border-2 hover:border-primary transition-all duration-300 hover:shadow-lg group"
-              >
-                <CardContent className="p-6 space-y-4">
-                  <div className={`w-14 h-14 bg-gradient-to-br ${category.color} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                    <category.icon className="h-7 w-7 text-white" />
+              <div key={category.sectionId} id={category.sectionId} className="scroll-mt-24">
+                <Card className="overflow-hidden border-2">
+                  <div className={`bg-gradient-to-br ${category.color} p-8 text-white`}>
+                    <div className="flex items-center gap-4 mb-3">
+                      <category.icon className="h-8 w-8" />
+                      <h3 className="text-3xl font-bold">{category.title}</h3>
+                    </div>
+                    <p className="text-white/90 max-w-2xl">{category.description}</p>
                   </div>
-                  <h3 className="text-xl font-bold whitespace-nowrap transition-all duration-300 hover:translate-x-1 hover:text-primary">
-                    {category.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">{category.description}</p>
                   
-                  <div className="pt-4 space-y-2">
-                    {displayProducts.map((product) => (
-                      <Button
-                        key={product.id}
-                        variant="ghost"
-                        className="w-full justify-between"
-                        asChild
-                      >
-                        <Link to={`/produit/${product.id}`}>
-                          {product.name}
-                          <ArrowRight className="h-4 w-4" />
+                  <CardContent className="p-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {displayProducts.map((product) => (
+                        <Link
+                          key={product.id}
+                          to={`/produit/${product.id}`}
+                          className="group"
+                        >
+                          <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary">
+                            <div className="aspect-[137/98] relative overflow-hidden bg-muted">
+                              <img
+                                src={product.thumbnailUrl}
+                                alt={product.name}
+                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                loading="lazy"
+                              />
+                            </div>
+                            <CardContent className="p-4">
+                              <h4 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                                {product.name}
+                              </h4>
+                              <p className="text-sm text-muted-foreground line-clamp-2">
+                                {product.subtitle}
+                              </p>
+                            </CardContent>
+                          </Card>
                         </Link>
-                      </Button>
-                    ))}
-                    {isInterior && !showAllInterior && (
-                      <Button
-                        variant="outline"
-                        className="w-full"
-                        onClick={() => setShowAllInterior(true)}
-                      >
-                        Voir + ({category.products.length - 3} produits)
-                      </Button>
+                      ))}
+                    </div>
+
+                    {hasMore && (
+                      <div className="text-center mt-8">
+                        <button
+                          onClick={() => toggleCategory(category.sectionId)}
+                          className="px-8 py-3 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-lg hover:shadow-lg transition-all hover:scale-105"
+                        >
+                          {isExpanded 
+                            ? "Voir moins" 
+                            : `Voir + (${products.length - 3} autres produits)`
+                          }
+                        </button>
+                      </div>
                     )}
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </div>
             );
           })}
         </div>
