@@ -42,12 +42,16 @@ const CataloguesPage = () => {
       <div className="pt-20">
         <section className="py-24 bg-secondary/30">
           <div className="container mx-auto px-4">
-            <div className="text-center space-y-4 mb-16">
+            <div className="text-center space-y-4 mb-12">
               <h1 className="text-4xl md:text-5xl font-black">Catalogues PDF</h1>
               <div className="h-1 w-24 bg-[var(--gradient-brand)] rounded-full mx-auto" />
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 Téléchargez nos catalogues produits et documentations techniques
               </p>
+              <Button size="lg" className="mt-6 bg-gradient-to-r from-[hsl(51,100%,50%)] to-[hsl(45,100%,45%)] text-black hover:from-[hsl(51,100%,45%)] hover:to-[hsl(45,100%,40%)] font-bold">
+                <Download className="h-5 w-5 mr-2" />
+                Télécharger le catalogue complet
+              </Button>
             </div>
 
             <div className="space-y-16 max-w-5xl mx-auto">

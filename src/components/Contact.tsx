@@ -113,7 +113,7 @@ export function Contact() {
                   className="relative h-64 rounded-lg overflow-hidden cursor-pointer group"
                 >
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3262.8564!2d10.826!3d35.762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQ1JzQzLjIiTiAxMMKwNDknMzMuNiJF!5e0!3m2!1sen!2stn!4v1234567890"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3262.856394733033!2d10.823690476403908!3d35.76200007258089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd89d8f8f8f8f8%3A0x8f8f8f8f8f8f8f8!2sPittura%20Nostra!5e0!3m2!1sen!2stn!4v1234567890"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
@@ -147,7 +147,7 @@ export function Contact() {
               <X className="h-6 w-6" />
             </Button>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3262.8564!2d10.826!3d35.762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQ1JzQzLjIiTiAxMMKwNDknMzMuNiJF!5e0!3m2!1sen!2stn!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3262.856394733033!2d10.823690476403908!3d35.76200007258089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd89d8f8f8f8f8%3A0x8f8f8f8f8f8f8f8!2sPittura%20Nostra!5e0!3m2!1sen!2stn!4v1234567890"
               width="100%"
               height="100%"
               style={{ border: 0 }}
