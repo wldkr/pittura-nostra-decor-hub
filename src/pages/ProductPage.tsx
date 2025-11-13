@@ -232,22 +232,27 @@ export default function ProductPage() {
             <div className="max-w-5xl mx-auto">
               <h2 className="text-3xl font-bold mb-8 text-center">Documentation</h2>
               <div className="grid md:grid-cols-2 gap-6">
-                {product.technicalSheetUrl ? (
-                  <Card className="hover:shadow-xl transition-all hover:-translate-y-1">
-                    <CardContent className="p-8 text-center">
-                      <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-4">
-                        <FileText className="h-8 w-8 text-white" />
-                      </div>
-                      <h3 className="text-xl font-bold mb-4">Fiche Technique</h3>
+                <Card className="hover:shadow-xl transition-all hover:-translate-y-1">
+                  <CardContent className="p-8 text-center">
+                    <div className="h-16 w-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-4">
+                      <FileText className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-4">Fiche Technique</h3>
+                    {product.technicalSheetUrl ? (
                       <Button className="w-full" size="lg" asChild>
                         <a href={product.technicalSheetUrl} download>
                           <Download className="h-5 w-5 mr-2" />
                           Télécharger le PDF
                         </a>
                       </Button>
-                    </CardContent>
-                  </Card>
-                ) : null}
+                    ) : (
+                      <Button className="w-full" size="lg" disabled>
+                        <Download className="h-5 w-5 mr-2" />
+                        Fiche technique à venir
+                      </Button>
+                    )}
+                  </CardContent>
+                </Card>
                 
                 <Card className="hover:shadow-xl transition-all hover:-translate-y-1">
                   <CardContent className="p-8 text-center">
