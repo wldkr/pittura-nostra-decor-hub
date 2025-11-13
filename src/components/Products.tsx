@@ -83,8 +83,8 @@ export function Products() {
           {productCategories.map((category) => {
             const products = getProductsByCategory(category.category);
             const isExpanded = expandedCategories[category.sectionId];
-            const displayProducts = isExpanded ? products : products.slice(0, 3);
-            const hasMore = products.length > 3;
+            const displayProducts = isExpanded ? products : products.slice(0, 4);
+            const hasMore = products.length > 4;
 
             return (
               <div key={category.sectionId} id={category.sectionId} className="scroll-mt-24">
@@ -135,7 +135,7 @@ export function Products() {
                         >
                           {isExpanded 
                             ? "Voir moins" 
-                            : `Voir + (${products.length - 3} autres produits)`
+                            : `Voir + (${products.length - 4} autres produits)`
                           }
                         </button>
                       </div>
