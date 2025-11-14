@@ -1,6 +1,3 @@
-import blogDecorativeTechniques from "@/assets/blog-decorative-techniques.jpg";
-import blogFacadeMaintenance from "@/assets/blog-facade-maintenance.jpg";
-
 export interface BlogPost {
   id: string;
   title: string;
@@ -18,7 +15,7 @@ export const blogPosts: BlogPost[] = [
     title: "Techniques de Peinture Décorative : Guide Complet",
     excerpt: "Découvrez les meilleures techniques pour réussir vos projets de peinture décorative et transformer vos espaces.",
     date: "2024-03-15",
-    image: blogDecorativeTechniques,
+    image: "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&h=500&fit=crop",
     category: "Conseils",
     content: [
       "La peinture décorative est un art qui permet de transformer complètement l'atmosphère d'un espace. Dans cet article, nous allons explorer les techniques essentielles pour réussir vos projets.",
@@ -46,7 +43,7 @@ export const blogPosts: BlogPost[] = [
     title: "Entretien des Façades Extérieures : Nos Conseils d'Expert",
     excerpt: "Comment protéger et entretenir vos façades pour qu'elles restent belles plus longtemps.",
     date: "2024-03-05",
-    image: blogFacadeMaintenance,
+    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&h=500&fit=crop",
     category: "Entretien",
     content: [
       "L'entretien régulier de vos façades extérieures est essentiel pour préserver leur beauté et leur intégrité structurelle.",

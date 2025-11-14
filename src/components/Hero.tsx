@@ -7,18 +7,13 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
-import hero1 from "@/assets/hero-1.jpg";
-import hero2 from "@/assets/hero-2.jpg";
-import hero3 from "@/assets/hero-3.jpg";
-import hero4 from "@/assets/hero-4.jpg";
-import hero5 from "@/assets/hero-5.jpg";
 
 const heroImages = [
-  { src: hero1, alt: "Peintre professionnel appliquant de la peinture décorative sur un mur intérieur" },
-  { src: hero2, alt: "Façade de maison moderne fraîchement peinte avec finitions professionnelles" },
-  { src: hero3, alt: "Outils de peinture professionnels - rouleaux et équipement de qualité" },
-  { src: hero4, alt: "Intérieur élégant avec finition décorative murale haut de gamme" },
-  { src: hero5, alt: "Artisan peintre au travail sur la rénovation d'une façade extérieure" },
+  "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1920&h=1080&fit=crop",
+  "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1920&h=1080&fit=crop",
+  "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1920&h=1080&fit=crop",
+  "https://images.unsplash.com/photo-1604709177225-055f99402ea3?w=1920&h=1080&fit=crop",
+  "https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=1920&h=1080&fit=crop",
 ];
 
 export function Hero() {
@@ -49,8 +44,8 @@ export function Hero() {
             <CarouselItem key={index} className="h-screen">
               <div className="relative w-full h-full">
                 <img
-                  src={image.src}
-                  alt={image.alt}
+                  src={image}
+                  alt={`Réalisation décorative ${index + 1}`}
                   className="w-full h-full object-cover"
                   loading={index === 0 ? "eager" : "lazy"}
                 />
