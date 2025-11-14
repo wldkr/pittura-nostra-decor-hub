@@ -3,7 +3,7 @@ import { colors } from "@/data/colorsData";
 import { Card, CardContent } from "@/components/ui/card";
 
 export function ColorsGrid() {
-  const [visibleCount, setVisibleCount] = useState(16); // lazy loading initial
+  const [visibleCount, setVisibleCount] = useState(16);
 
   const loadMore = () => {
     setVisibleCount((prev) => Math.min(prev + 16, colors.length));
@@ -11,7 +11,6 @@ export function ColorsGrid() {
 
   return (
     <div>
-      <h2 className="text-3xl font-bold mb-8 text-center">Nuances Disponibles</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
         {colors.slice(0, visibleCount).map((color) => (
           <Card 
