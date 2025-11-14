@@ -1,21 +1,37 @@
-import { useState } from "react";
-import { colors } from "@/data/colorsData";
+import { colorData } from "@/data/colorData";
 import { Card, CardContent } from "@/components/ui/card";
+import { useState } from "react";
 
 export function ColorsGrid() {
-  const [visibleCount, setVisibleCount] = useState(16);
+  const [showAll, setShowAll] = useState(false);
 
-  const loadMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 16, colors.length));
-  };
+  // Organisation : A→D, ligne par ligne
+  const sortedColors = (() => {
+    const cols = { A: [], B: [], C: [], D: [] };
+    colorData.forEach(c => {
+      const col = c.id[0] as "A" | "B" | "C" | "D";
+      cols[col].push(c);
+    });
+    const maxLength = Math.max(cols.A.length, cols.B.length, cols.C.length, cols.D.length);
+    const result: typeof colorData = [];
+    for (let i = 0; i < maxLength; i++) {
+      if (cols.A[i]) result.push(cols.A[i]);
+      if (cols.B[i]) result.push(cols.B[i]);
+      if (cols.C[i]) result.push(cols.C[i]);
+      if (cols.D[i]) result.push(cols.D[i]);
+    }
+    return result;
+  })();
+
+  const colorsToShow = showAll ? sortedColors : sortedColors.slice(0, 8);
 
   return (
-    <div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-        {colors.slice(0, visibleCount).map((color) => (
-          <Card 
-            key={color.id} 
-            className="overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group hover:-translate-y-2"
+    <>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {colorsToShow.map(color => (
+          <Card
+            key={color.id}
+            className="overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group hover:-translate-y-2 animate-fade-in"
           >
             <div className="aspect-square relative overflow-hidden">
               <img
@@ -32,16 +48,16 @@ export function ColorsGrid() {
         ))}
       </div>
 
-      {visibleCount < colors.length && (
+      {sortedColors.length > 8 && (
         <div className="text-center mt-8">
           <button
-            onClick={loadMore}
+            onClick={() => setShowAll(!showAll)}
             className="px-8 py-3 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-lg hover:shadow-lg transition-all hover:scale-105"
           >
-            Voir plus ({colors.length - visibleCount} restantes)
+            {showAll ? "Voir moins" : `Voir plus (${sortedColors.length - 8} autres nuances)`}
           </button>
         </div>
       )}
-    </div>
+    </>
   );
 }
