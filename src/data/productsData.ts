@@ -30,7 +30,8 @@ export interface ProductData {
 export const DEFAULT_VIDEO_URL = "https://www.youtube-nocookie.com/embed/33pQyXMyBuk";
 
 // Image par défaut si aucune image n'est trouvée
-export const DEFAULT_THUMBNAIL = "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=300&h=200&fit=crop";
+export const DEFAULT_MAIN_IMAGE = "https://drive.google.com/uc?export=view&id=1gIJHWzAHkO5M9YCGPPHwXPTWmre8rgy3";
+export const DEFAULT_THUMBNAIL = "https://drive.google.com/uc?export=view&id=1gIJHWzAHkO5M9YCGPPHwXPTWmre8rgy3";
 
 export const productsDatabase: Record<string, ProductData> = {
   // ========== PEINTURES INTÉRIEURES ==========
