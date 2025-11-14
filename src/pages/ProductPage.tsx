@@ -6,12 +6,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Download, ArrowLeft, FileText, Mail, Play } from "lucide-react";
 import { getProduct, DEFAULT_VIDEO_URL, DEFAULT_THUMBNAIL } from "@/data/productsData";
 import { useState } from "react";
+import inspiration1 from "@/assets/inspiration-1.jpg";
+import inspiration2 from "@/assets/inspiration-2.jpg";
+import inspiration3 from "@/assets/inspiration-3.jpg";
+import inspiration4 from "@/assets/inspiration-4.jpg";
 
 const inspirationImages = [
-  "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=600&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1604709177225-055f99402ea3?w=600&h=400&fit=crop",
+  { src: inspiration1, alt: "Salon moderne avec murs peints de manière décorative" },
+  { src: inspiration2, alt: "Chambre élégante avec mur d'accent décoratif" },
+  { src: inspiration3, alt: "Façade extérieure de maison fraîchement peinte" },
+  { src: inspiration4, alt: "Bureau moderne avec murs décorés professionnellement" },
 ];
 
 export default function ProductPage() {
@@ -285,8 +289,8 @@ export default function ProductPage() {
                   <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow group">
                     <div className="aspect-[3/4] relative overflow-hidden">
                       <img
-                        src={image}
-                        alt={`Réalisation ${index + 1}`}
+                        src={image.src}
+                        alt={image.alt}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     </div>
