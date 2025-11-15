@@ -4,7 +4,7 @@ import { FileText, Download } from "lucide-react";
 
 const catalogues = [
   {
-    title: "Catalogue Général",
+    title: "Catalogue Général 2022",
     description: "Découvrez notre gamme complète de produits décoratifs",
     year: "2022",
     url: "#", // URL to be updated with actual PDF link
