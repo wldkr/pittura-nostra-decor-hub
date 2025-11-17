@@ -1,17 +1,28 @@
-echo "backend:
-  name: git-gateway
-  branch: main
 site_url: https://pitturanostra.netlify.app
 
-media_folder: 'public/images/uploads'
-public_folder: '/images/uploads'
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
 
 collections:
-  - name: 'pages'
-    label: 'Pages existantes'
+  - name: "pages"
+    label: "Pages du site"
     files:
-      - file: 'src/pages/index.html'
-        label: 'Accueil'
+      - file: "src/pages/index.html"
+        label: "Accueil"
         fields:
-          - { label: 'Titre', name: 'title', widget: 'string' }
-          - { label: 'Contenu', name: 'body', widget: 'markdown' }" > public\admin\config.yml
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+      - file: "src/pages/about.html"
+        label: "À propos"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
+      - file: "src/pages/contact.html"
+        label: "Contact"
+        fields:
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Contenu", name: "body", widget: "markdown" }
