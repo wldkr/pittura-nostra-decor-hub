@@ -11,17 +11,17 @@ collections:
   - name: "pages"
     label: "Pages du site"
     files:
-      - file: "src/pages/index.html"
+      - file: "public/index.html"
         label: "Accueil"
         fields:
           - { label: "Titre", name: "title", widget: "string" }
           - { label: "Contenu", name: "body", widget: "markdown" }
-      - file: "src/pages/about.html"
+      - file: "public/about.html"
         label: "À propos"
         fields:
           - { label: "Titre", name: "title", widget: "string" }
           - { label: "Contenu", name: "body", widget: "markdown" }
-      - file: "src/pages/contact.html"
+      - file: "public/contact.html"
         label: "Contact"
         fields:
           - { label: "Titre", name: "title", widget: "string" }
