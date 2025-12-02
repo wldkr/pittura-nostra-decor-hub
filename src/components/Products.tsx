@@ -98,12 +98,12 @@ export function Products() {
                   </div>
                   
                   <CardContent className="p-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                    <div className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto">
                       {displayProducts.map((product) => (
                         <Link
                           key={product.id}
                           to={`/produit/${product.id}`}
-                          className="group"
+                          className="group w-full md:w-[calc(50%-12px)] lg:w-[calc(25%-18px)]"
                         >
                           <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary">
                             <div className="aspect-[137/98] relative overflow-hidden bg-muted">
