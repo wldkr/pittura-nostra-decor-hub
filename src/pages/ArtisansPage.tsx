@@ -11,30 +11,25 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+// Playlist: https://www.youtube.com/playlist?list=PLdC6Xr0onQqlI0flhZjjlkrYXa46ZGdgQ
 const artisanVideos = [
   {
     id: "video1",
-    youtubeId: "33pQyXMyBuk",
-    title: "Technique de peinture décorative",
-    description: "Découvrez les techniques professionnelles de nos artisans",
+    youtubeId: "xA8RDK-VZJs",
+    title: "Vidéo Artisan 1",
+    description: "Techniques et savoir-faire de nos artisans partenaires",
   },
   {
     id: "video2",
-    youtubeId: "ONlwxw-gBd8",
-    title: "Application de texture murale",
-    description: "Maîtrisez l'art des textures décoratives",
+    youtubeId: "33pQyXMyBuk",
+    title: "Vidéo Artisan 2",
+    description: "Découvrez les techniques professionnelles",
   },
   {
     id: "video3",
-    youtubeId: "33pQyXMyBuk",
-    title: "Finitions décoratives premium",
-    description: "L'excellence dans les finitions haut de gamme",
-  },
-  {
-    id: "video4",
     youtubeId: "ONlwxw-gBd8",
-    title: "Peinture extérieure",
-    description: "Techniques pour les surfaces extérieures",
+    title: "Vidéo Artisan 3",
+    description: "L'excellence dans les finitions décoratives",
   },
 ];
 
