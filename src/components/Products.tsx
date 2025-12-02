@@ -1,39 +1,39 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { Home, Building2, Sparkles, Shield } from "lucide-react";
+import { Square, Layers, Palette, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { getProductsByCategory } from "@/data/productsData";
 
 const productCategories = [
   {
-    icon: Home,
+    icon: Square,
     title: "Peintures Intérieures",
     description: "Peintures intérieures de haute qualité pour murs et plafonds avec excellente couverture et durabilité.",
-    color: "from-blue-500 to-indigo-600",
+    color: "from-slate-600 to-slate-800",
     category: "interior" as const,
     sectionId: "peintures-interieures"
   },
   {
-    icon: Building2,
+    icon: Layers,
     title: "Revêtements Extérieurs",
     description: "Peintures extérieures résistantes aux intempéries conçues pour les conditions difficiles.",
-    color: "from-green-500 to-emerald-600",
+    color: "from-zinc-600 to-zinc-800",
     category: "exterior" as const,
     sectionId: "revetements-exterieurs"
   },
   {
-    icon: Sparkles,
+    icon: Palette,
     title: "Finitions Décoratives",
     description: "Finitions décoratives premium incluant métalliques, texturées et effets spéciaux.",
-    color: "from-purple-500 to-pink-600",
+    color: "from-[hsl(51,100%,50%)] to-[hsl(45,100%,45%)]",
     category: "decorative" as const,
     sectionId: "finitions-decoratives"
   },
   {
-    icon: Shield,
+    icon: ShieldCheck,
     title: "Solutions Protectrices",
     description: "Revêtements protecteurs de qualité industrielle pour une durabilité et protection maximales.",
-    color: "from-amber-500 to-orange-600",
+    color: "from-stone-600 to-stone-800",
     category: "protective" as const,
     sectionId: "solutions-protectrices"
   },
