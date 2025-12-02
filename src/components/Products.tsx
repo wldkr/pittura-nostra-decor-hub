@@ -9,7 +9,7 @@ const productCategories = [
     icon: Square,
     title: "Peintures Intérieures",
     description: "Peintures intérieures de haute qualité pour murs et plafonds avec excellente couverture et durabilité.",
-    color: "from-slate-600 to-slate-800",
+    color: "from-neutral-800 to-black",
     category: "interior" as const,
     sectionId: "peintures-interieures"
   },
@@ -17,7 +17,7 @@ const productCategories = [
     icon: Layers,
     title: "Revêtements Extérieurs",
     description: "Peintures extérieures résistantes aux intempéries conçues pour les conditions difficiles.",
-    color: "from-zinc-600 to-zinc-800",
+    color: "from-neutral-800 to-black",
     category: "exterior" as const,
     sectionId: "revetements-exterieurs"
   },
@@ -25,7 +25,7 @@ const productCategories = [
     icon: Palette,
     title: "Finitions Décoratives",
     description: "Finitions décoratives premium incluant métalliques, texturées et effets spéciaux.",
-    color: "from-[hsl(51,100%,50%)] to-[hsl(45,100%,45%)]",
+    color: "from-neutral-800 to-black",
     category: "decorative" as const,
     sectionId: "finitions-decoratives"
   },
@@ -33,7 +33,7 @@ const productCategories = [
     icon: ShieldCheck,
     title: "Solutions Protectrices",
     description: "Revêtements protecteurs de qualité industrielle pour une durabilité et protection maximales.",
-    color: "from-stone-600 to-stone-800",
+    color: "from-neutral-800 to-black",
     category: "protective" as const,
     sectionId: "solutions-protectrices"
   },
