@@ -1,26 +1,19 @@
 import { Award, Target, Users } from "lucide-react";
-
-const values = [
-  {
-    icon: Award,
-    title: "Excellence Qualité",
-    description: "Engagés à fournir des produits premium conformes aux standards internationaux.",
-  },
-  {
-    icon: Target,
-    title: "Innovation",
-    description: "Développement continu de nouvelles solutions pour les besoins décoratifs modernes.",
-  },
-  {
-    icon: Users,
-    title: "Satisfaction Client",
-    description: "Dédiés à fournir un service et un support exceptionnels à nos clients.",
-  },
-];
-
+const values = [{
+  icon: Award,
+  title: "Excellence Qualité",
+  description: "Engagés à fournir des produits premium conformes aux standards internationaux."
+}, {
+  icon: Target,
+  title: "Innovation",
+  description: "Développement continu de nouvelles solutions pour les besoins décoratifs modernes."
+}, {
+  icon: Users,
+  title: "Satisfaction Client",
+  description: "Dédiés à fournir un service et un support exceptionnels à nos clients."
+}];
 export function About() {
-  return (
-    <section id="about" className="py-24">
+  return <section id="about" className="py-24">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-4 mb-16">
@@ -29,18 +22,9 @@ export function About() {
           </div>
 
           {/* Video Section */}
-          <div className="mb-16">
+          <div className="mb-16 rounded-3xl">
             <div className="aspect-video w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-lg">
-              <iframe 
-                width="100%" 
-                height="100%" 
-                src="https://www.youtube-nocookie.com/embed/ONlwxw-gBd8?si=7Ml8Jl6p4tLQkei6&autoplay=1&mute=1&controls=0&loop=1&playlist=ONlwxw-gBd8" 
-                title="PITTURA NOSTRA"
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
+              <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/ONlwxw-gBd8?si=7Ml8Jl6p4tLQkei6&autoplay=1&mute=1&controls=0&loop=1&playlist=ONlwxw-gBd8" title="PITTURA NOSTRA" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen />
             </div>
           </div>
 
@@ -59,8 +43,7 @@ export function About() {
             </div>
             
             <div className="space-y-6">
-              {values.map((value, index) => (
-                <div key={index} className="flex gap-4 items-start">
+              {values.map((value, index) => <div key={index} className="flex gap-4 items-start">
                   <div className="w-12 h-12 bg-[var(--gradient-brand)] rounded-lg flex items-center justify-center flex-shrink-0">
                     <value.icon className="h-6 w-6 text-white" />
                   </div>
@@ -68,12 +51,10 @@ export function About() {
                     <h3 className="text-xl font-bold mb-2">{value.title}</h3>
                     <p className="text-muted-foreground">{value.description}</p>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 }
