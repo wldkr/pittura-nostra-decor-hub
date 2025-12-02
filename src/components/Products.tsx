@@ -79,7 +79,7 @@ export function Products() {
         </div>
 
         {/* Sections de produits par famille */}
-        <div className="space-y-16 max-w-7xl mx-auto">
+        <div className="space-y-16">
           {productCategories.map((category) => {
             const products = getProductsByCategory(category.category);
             const isExpanded = expandedCategories[category.sectionId];
@@ -98,7 +98,7 @@ export function Products() {
                   </div>
                   
                   <CardContent className="p-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
                       {displayProducts.map((product) => (
                         <Link
                           key={product.id}
