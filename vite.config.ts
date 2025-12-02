@@ -15,6 +15,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // ⚠️ Ajoute cette ligne pour GitHub Pages
-  base: "/pittura-nostra-decor-hub/",
 }));
